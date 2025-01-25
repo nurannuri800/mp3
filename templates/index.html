@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video ve Ses İndirici</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Video ve Ses İndirici</h1>
+    </header>
+    <main>
+        <form action="/download" method="POST">
+            <label for="url">Video URL:</label>
+            <input type="url" name="url" placeholder="https://www.youtube.com/watch?v=..." required>
+            
+            <label for="media_type">Type of File:</label>
+            <select name="media_type" id="media_type" onchange="toggleOptions()">
+                <option value="video">Video</option>
+            </select>
+            
+            <div id="video_options">
+                <label for="quality">Quality:</label>
+                <select name="quality">
+                    <option value="1080">1080p</option>
+                    <option value="720">720p</option>
+                    <option value="480">480p</option>
+                    <option value="360">360p</option>
+                </select>
+                
+                <label for="format">Type:</label>
+                <select name="format">
+                    <option value="mp4">MP4</option>
+                    <option value="mkv">MKV</option>
+                    <option value="webm">WebM</option>
+                </select>
+            </div>
+
+            <div id="audio_options" style="display: none;">
+                <label for="quality">Audio Quality (kbps):</label>
+                <select name="quality">
+                    <option value="320">320 kbps</option>
+                    <option value="256">256 kbps</option>
+                    <option value="192">192 kbps</option>
+                    <option value="128">128 kbps</option>
+                </select>
+                
+                <label for="format">Audio Type:</label>
+                <select name="format">
+                    <option value="mp3">MP3</option>
+                    <option value="aac">AAC</option>
+                    <option value="flac">FLAC</option>
+                    <option value="wav">WAV</option>
+                </select>
+            </div>
+            
+            <button type="submit">Download</button>
+        </form>
+    </main>
+
+    <script>
+        function toggleOptions() {
+            const mediaType = document.getElementById('media_type').value;
+            const videoOptions = document.getElementById('video_options');
+            const audioOptions = document.getElementById('audio_options');
+
+            if (mediaType === 'video') {
+                videoOptions.style.display = 'block';
+                audioOptions.style.display = 'none';
+            } else {
+                videoOptions.style.display = 'none';
+                audioOptions.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
